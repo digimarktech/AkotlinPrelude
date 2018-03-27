@@ -6,7 +6,7 @@ package com.lamour.akotlinprelude
 import android.widget.Button
 import android.graphics.Color
 
-enum class ButtonState {
+ enum class ButtonState {
     unable,
     enable
 }
