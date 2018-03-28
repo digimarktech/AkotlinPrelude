@@ -1,4 +1,4 @@
-package com.lamour.akotlinprelude
+package com.lamour.akotlinprelude.Extensions
 
 /**
  * Created by lamour on 3/26/18.

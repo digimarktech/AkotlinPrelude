@@ -7,7 +7,7 @@ import android.app.Activity
 
 
 /*
-Multi-Pane UI (manipulating various fragments onto a single Activity)
+Multi-Plane UI (manipulating various fragments onto a single Activity)
 
 - each fragment should customize the activity to their like, i.e change activity's title
 - passing data around from fragment to fragment using the activity as the middleman
