@@ -1,16 +1,25 @@
 # AkotlinPrelude 
 
-This contains basic fragment manipulation, generics UI (tabBar), generic MVP interface for Kotlin Android.
+**The purpose of this dependency is to promote faster development, by providing generic Component such as TabActivity, MVP design interface, extension onto existing Android framework.**
+
 
 
 ## Version 
-* 0.0.1 (Prelude init with fragment, button extensions)
-* 0.2.0 Multi-Plane-UI (manipulating multiple fragments onto a single Activity)
+* 0.0.1 Prelude init
+* 0.2.0 Multi-Plane UI 
+* 0.2.1 (latest) 
+
+## Features 
+- **TabActivity**
+- **PlainFragment**, **PlainActivity** (Multi-Plane UI)
+- **MVP Design/Architecture interface**
+- **Extensions**
+
+## Examples 
+*you'll find examples* [here](https://github.com/LamourBt/AkotlinPrelude/tree/dev1/app/src/main/java/com/lamour/akotlinpreludeexample)
 
 ## Install 
-- **Step 1**. Add the JitPack repository to your build file
-
-* Add it in your root build.gradle at the end of repositories:
+- **Step 1**. Add the JitPack repository to your build file (root/project build.gradle)
   
   ```
   allprojects {
@@ -20,89 +29,37 @@ This contains basic fragment manipulation, generics UI (tabBar), generic MVP int
 		}
 	}
   ```
- - **Step 2.** Add the dependency
+- **Step 2.** Add the dependency
  
  ```
-	    implementation 'com.github.LamourBt:AkotlinPrelude:0.2.0'
+  implementation 'com.github.LamourBt:AkotlinPrelude:0.2.1'
  ```
-## Documentation
-```Kotlin 
-/* 
-	 Multi-Plane-UI 
-	(manipulating multiple fragments onto a single Activity)
-	
-	 Any Activity that wishes to become a middleman
-	 would conform to `IActivityMiddleman` interface
-	 
-	 Any Fragment that wishes to customize this middleman Activity
-	 would conform to `IPlainFragment` interface 
-	 
-	 However there is two bases classes that take care of the interfaces 
-	 above, PlainFragment and PlainActivity (has a default layout thus you don't need provide a layoutView)
-	 
-	 Note: the code below is just an overView check the example project for more elaborate codes. 
 
-  */
+
+
+## Multi-Plane UI 
+
+> 	 It's when you're manipulating multiple fragments onto a single Activity. Let's say that you're implementing this following onbording flow **BasicInfo > Create Profile > Upload User Image** (assuming each step is a fragment that is loaded). So by deriving from `PlainFragment` for your fragments and `PlainActivity` for this single Activity, your fragments have the ability to customize (such as title) this PlainActivity, and you can invoke delegates to pass information from one fragment to another within the Activity.  
 
  
- class MainActivity: PlainActivity() { 
-     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setFrameLayoutContainer() // <--- set the default layoutView  
-        
-     }
-     
-     // the methods below makes this Activity a middleman 
-     
-     override fun setActivityTitle(string: String) { 
-     		 supportActionBar?.title = string
-     }
-     
-     override fun <A> broadcasting(owner: Fragment, item: A) {}
-     
-     override fun <A> broadcasting(owner: Fragment, items: List<A>) {}
-     
-     override fun shouldBeReplaced(current: Fragment) {}
+  
+## TabActivity
  
- }
+>  An abstract class that contains Generic ViewPager, Adapter, TabLayout. With less than 2 functions call, you'd build TabBarController like UI.
+
+
+## Questions, Issues or Suggestions
+Feel free to open a github issue. 
+
+## Author
+lamour 
+	 
+## License
+AkotlinPrelude is available under the MIT license. See the LICENSE file for more info.
+
  
- class TestAFragment: PlainFragment() {
-	    override var title: String? = null
-	    override var middlemanListener: WeakReference<IActivityMiddleman>? = null
-	
-	
-	    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-	        super.onViewCreated(view, savedInstanceState)
-	     
-	        setFragmentTitle() //<-- set fragment title would also set its activity's title 
-	
-			 /*
-			  Assuming there is a button in this fragment,
-			   and once it's pressed it'd emit/broadcast data to its host Activity 
-			  in order for other fragments can used. 
-			  
-			  Or wants to tell his host to present another fragment
-			  
-			 */
-	        button?.setOnClickListener {
-	            middlemanListener?.get()?.broadcasting(this, 21) 
-	            
-	            middlemanListener?.get()?.shouldBeReplaced(this)
-	        }
-	    }
-	
-	
-	    override fun onAttach(context: Context?) {
-	        super.onAttach(context)
-	        setMiddlemanListener(activity) //<-- set listener 
-	    }
-	
-	    override fun onDetach() {
-	        super.onDetach()
-	        releaseMiddleListener() // <-- remove listener 
-	    }
-}
-```
+
+
 
 
 
