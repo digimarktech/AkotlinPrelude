@@ -21,19 +21,19 @@
 ## Install 
 - **Step 1**. Add the JitPack repository to your build file (root/project build.gradle)
   
-  ```
+```
   allprojects {
 		repositories {
 			...
 			maven { url 'https://jitpack.io' }
 		}
 	}
-  ```
+```
 - **Step 2.** Add the dependency
  
- ```
+```
   implementation 'com.github.LamourBt:AkotlinPrelude:0.2.1'
- ```
+```
 
 
 
