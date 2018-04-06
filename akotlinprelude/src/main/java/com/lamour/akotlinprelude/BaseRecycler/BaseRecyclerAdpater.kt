@@ -10,6 +10,8 @@ open class BaseRecyclerAdapter<A,
         V: BaseRecyclerViewHolder<A>>(private val items: List<A>)
         : RecyclerView.Adapter<V>() {
 
+    var hasClickedOnRowAt:((Int, View?) -> Unit)? = null
+
     /*
     * setLayoutReferenceId would be the viewHolder fragment
     * and it needs to be override by its derived object
@@ -51,6 +53,11 @@ open class BaseRecyclerAdapter<A,
 
     override  fun onBindViewHolder(holder: V?, position: Int) {
         holder?.configure(this.items[position])
+
+        // listen for click onto cellView
+        holder?.itemView?.setOnClickListener {
+            hasClickedOnRowAt?.invoke(position, it)
+        }
     }
 }
 
