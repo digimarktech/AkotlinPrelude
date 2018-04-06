@@ -7,13 +7,15 @@
 ## Version 
 * 0.0.1 Prelude init
 * 0.2.0 Multi-Plane UI 
-* 0.2.1 (latest) 
+* 0.2.1
+* 0.2.2 (latest)
 
 ## Features 
 - **TabActivity**
 - **PlainFragment**, **PlainActivity** (Multi-Plane UI)
 - **MVP Design/Architecture interface**
 - **Extensions**
+- **Generic Recycler**
 
 ## Examples 
 *you'll find examples* [here](https://github.com/LamourBt/AkotlinPrelude/tree/dev1/app/src/main/java/com/lamour/akotlinpreludeexample)
@@ -32,7 +34,7 @@
 - **Step 2.** Add the dependency
  
 ```
-  implementation 'com.github.LamourBt:AkotlinPrelude:0.2.1'
+  implementation 'com.github.LamourBt:AkotlinPrelude:0.2.2'
 ```
 
 
